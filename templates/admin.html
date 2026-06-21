@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admin Panel</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Admin Panel</h1>
+
+<h2>Welcome Admin</h2>
+
+<button onclick="window.location.href='/add_question'">
+Add Question
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='/view_results'">
+View Results
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='/delete_results'">
+Delete History
+</button>
+
+<br><br>
+
+<button onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<script>
+
+function logout()
+{
+    window.location.href = "/";
+}
+
+</script>
+
+</body>
+</html>

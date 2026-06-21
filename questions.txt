@@ -1,0 +1,3 @@
+what is the output of the following code?  my_list = [1, 2, 3] my_list.append([4, 5]) print(len(my_list))|5,4,2,An error is raised|4
+Which function uses the square brackets []?|list,tuple,set,dictionary|list
+Which function uses the round brackets(parenthesis) ?|tuple,list,dictionary,set|tuple

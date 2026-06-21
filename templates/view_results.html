@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>View Results</title>
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Student Results</h1>
+
+<pre>{{ results }}</pre>
+
+<button onclick="window.location.href='/admin'">
+Back
+</button>
+
+</div>
+
+</body>
+</html>

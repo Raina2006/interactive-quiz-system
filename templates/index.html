@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Quiz Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Interactive Quiz Game</h1>
+
+<input type="text"
+       id="username"
+       placeholder="Enter Username">
+
+<br><br>
+
+<input type="password"
+       id="password"
+       placeholder="Enter Password">
+
+<br><br>
+
+<button onclick="login()">
+Login
+</button>
+
+<script>
+
+function login()
+{
+    let username =
+    document.getElementById("username").value;
+
+    let password =
+    document.getElementById("password").value;
+
+    localStorage.setItem("username", username);
+
+    if(
+       (username === "Raina" ||
+        username === "Vaishnavi")
+        &&
+        password === "CSA0814A"
+      )
+    {
+        window.location.href = "/admin";
+    }
+
+    else if(password === "CSA0814")
+    {
+        window.location.href = "/quiz";
+    }
+
+    else
+    {
+        alert("Invalid Login");
+    }
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Quiz Completed!</h1>
+
+    <h2 id="studentName"></h2>
+
+    <h2 id="score"></h2>
+
+    <h2 id="grade"></h2>
+
+    <button onclick="playAgain()">
+        Play Again
+    </button>
+
+</div>
+
+<script>
+
+let username =
+localStorage.getItem("username");
+
+let score =
+parseInt(localStorage.getItem("quizScore"));
+
+let grade = "";
+
+if(score === 3)
+{
+    grade = "Excellent";
+}
+else if(score === 2)
+{
+    grade = "Good";
+}
+else
+{
+    grade = "Needs Improvement";
+}
+
+document.getElementById("studentName").innerHTML =
+"Student : " + username;
+
+document.getElementById("score").innerHTML =
+"Score : " + score + "/3";
+
+document.getElementById("grade").innerHTML =
+"Grade : " + grade;
+
+function playAgain()
+{
+    localStorage.removeItem("quizScore");
+
+    window.location.href = "/";
+}
+
+</script>
+
+</body>
+</html>

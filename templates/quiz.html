@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quiz</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Quiz Time!</h1>
+
+    <h2 id="welcome"></h2>
+
+    <h3 id="timer">Time Left: 60 seconds</h3>
+
+    <form id="quizForm">
+
+        {% for q in questions %}
+
+        <div class="question"
+             {% if loop.index != 1 %}
+             style="display:none;"
+             {% endif %}>
+
+            <h3>{{ loop.index }}. {{ q.question }}</h3>
+
+            {% for option in q.options %}
+
+            <input type="radio"
+                   name="{{ q.question }}"
+                   value="{{ option }}">
+
+            {{ option }}
+
+            <br>
+
+            {% endfor %}
+
+        </div>
+
+        {% endfor %}
+
+        <br>
+
+        <button type="button"
+                id="nextBtn"
+                onclick="nextQuestion()">
+            Next
+        </button>
+
+        <button type="button"
+                id="submitBtn"
+                onclick="submitQuiz()"
+                style="display:none;">
+            Submit Quiz
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+document.getElementById("welcome").innerHTML =
+"Welcome " + localStorage.getItem("username");
+
+let timeLeft = 60;
+
+let timer = setInterval(function()
+{
+    document.getElementById("timer").innerHTML =
+    "Time Left: " + timeLeft + " seconds";
+
+    timeLeft--;
+
+    if(timeLeft < 0)
+    {
+        clearInterval(timer);
+        submitQuiz();
+    }
+
+}, 1000);
+
+let currentQuestion = 0;
+
+let questions =
+document.querySelectorAll(".question");
+
+function nextQuestion()
+{
+    let selected =
+    questions[currentQuestion]
+    .querySelector('input[type="radio"]:checked');
+
+    if(!selected)
+    {
+        alert("Please select an answer");
+        return;
+    }
+
+    questions[currentQuestion]
+    .style.display = "none";
+
+    currentQuestion++;
+
+    if(currentQuestion <
+       questions.length)
+    {
+        questions[currentQuestion]
+        .style.display = "block";
+    }
+
+    if(currentQuestion ==
+       questions.length - 1)
+    {
+        document.getElementById("nextBtn")
+        .style.display = "none";
+
+        document.getElementById("submitBtn")
+        .style.display = "inline-block";
+    }
+}
+
+function submitQuiz()
+{
+    clearInterval(timer);
+
+    let score = 0;
+
+    {% for q in questions %}
+
+    let answer{{ loop.index }} =
+    document.querySelector(
+        'input[name="{{ q.question }}"]:checked'
+    );
+
+    if(
+        answer{{ loop.index }} &&
+        answer{{ loop.index }}.value === "{{ q.answer }}"
+    )
+    {
+        score++;
+    }
+
+    {% endfor %}
+
+    localStorage.setItem(
+        "quizScore",
+        score
+    );
+
+    let username =
+    localStorage.getItem("username");
+
+    fetch('/save_result',
+    {
+        method: 'POST',
+
+        headers:
+        {
+            'Content-Type':
+            'application/x-www-form-urlencoded'
+        },
+
+        body:
+        'username=' +
+        encodeURIComponent(username)
+        +
+        '&score=' +
+        score
+    })
+
+    .then(response => response.text())
+
+    .then(data =>
+    {
+        window.location.href = "/result";
+    });
+}
+
+</script>
+
+</body>
+</html>
