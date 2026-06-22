@@ -19,3 +19,14 @@ button{
     font-size:18px;
     cursor:pointer;
 }
+.dark-mode
+{
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode .container
+{
+    background-color: #1e1e1e;
+    color: white;
+}
