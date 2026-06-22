@@ -38,7 +38,62 @@ def result():
     return render_template('result.html')
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
+
+    total_attempts = 0
+    highest_score = 0
+    total_score = 0
+
+    try:
+
+        with open('results.txt', 'r') as file:
+
+            for line in file:
+
+                parts = line.strip().split(' - ')
+
+                if len(parts) == 2:
+
+                    score = int(
+                        parts[1].split('/')[0]
+                    )
+
+                    total_attempts += 1
+                    total_score += score
+
+                    if score > highest_score:
+                        highest_score = score
+
+    except:
+        pass
+
+    average_score = 0
+
+    if total_attempts > 0:
+        average_score = round(
+            total_score / total_attempts,
+            2
+        )
+
+    question_count = 0
+
+    try:
+
+        with open('questions.txt', 'r') as file:
+
+            question_count = len(
+                file.readlines()
+            )
+
+    except:
+        pass
+
+    return render_template(
+        'admin.html',
+        total_attempts=total_attempts,
+        highest_score=highest_score,
+        average_score=average_score,
+        question_count=question_count
+    )
 @app.route('/add_question')
 def add_question():
     return render_template('add_question.html')

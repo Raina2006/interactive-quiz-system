@@ -17,6 +17,16 @@ href="{{ url_for('static', filename='style.css') }}">
 
 <h2>Welcome Admin</h2>
 
+<h3>Total Attempts : {{ total_attempts }}</h3>
+
+<h3>Highest Score : {{ highest_score }}</h3>
+
+<h3>Average Score : {{ average_score }}</h3>
+
+<h3>Total Questions : {{ question_count }}</h3>
+
+<hr>
+
 <button onclick="window.location.href='/add_question'">
 Add Question
 </button>
