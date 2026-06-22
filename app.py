@@ -97,5 +97,42 @@ def save_question():
         file.write(line)
 
     return render_template('admin.html')
+@app.route('/leaderboard')
+def leaderboard():
+
+    scores = []
+
+    try:
+
+        with open('results.txt', 'r') as file:
+
+            for line in file:
+
+                parts = line.strip().split(' - ')
+
+                if len(parts) == 2:
+
+                    name = parts[0]
+
+                    score = int(
+                        parts[1].split('/')[0]
+                    )
+
+                    scores.append(
+                        (name, score)
+                    )
+
+        scores.sort(
+            key=lambda x: x[1],
+            reverse=True
+        )
+
+    except:
+        pass
+
+    return render_template(
+        'leaderboard.html',
+        scores=scores
+    )
 if __name__ == '__main__':
     app.run(debug=True)

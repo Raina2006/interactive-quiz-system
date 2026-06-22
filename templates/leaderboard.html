@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Leaderboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏆 Leaderboard</h1>
+
+{% for student in scores %}
+
+<h3>
+
+{{ loop.index }}.
+
+{{ student[0] }}
+
+-
+
+{{ student[1] }}
+
+</h3>
+
+{% endfor %}
+
+<br>
+
+<button onclick="window.location.href='/admin'">
+
+Back
+
+</button>
+
+</div>
+
+</body>
+
+</html>
