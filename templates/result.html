@@ -20,6 +20,8 @@
 
     <h2 id="grade"></h2>
 
+    <h2 id="status"></h2>
+
     <button onclick="playAgain()">
         Play Again
     </button>
@@ -57,6 +59,17 @@ document.getElementById("score").innerHTML =
 
 document.getElementById("grade").innerHTML =
 "Grade : " + grade;
+
+if(score >= 2)
+{
+    document.getElementById("status").innerHTML =
+    "Status : PASS ✅";
+}
+else
+{
+    document.getElementById("status").innerHTML =
+    "Status : FAIL ❌";
+}
 
 function playAgain()
 {
