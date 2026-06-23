@@ -1,3 +1,10 @@
 what is the output of the following code?  my_list = [1, 2, 3] my_list.append([4, 5]) print(len(my_list))|5,4,2,An error is raised|4
 Which function uses the square brackets []?|list,tuple,set,dictionary|list
 Which function uses the round brackets(parenthesis) ?|tuple,list,dictionary,set|tuple
+What is Python?|Programming Language|Database|Operating System|Browser|Programming Language
+What is the correct way to create a variable in Python?|int x = 10|x = 10|var x = 10|declare x = 10|x = 10
+Which data type is used to store a sequence of characters?|int|float|str|bool|str
+What is the output of the following code? print(3 * 2 + 1)|7|9|6|8|7
+Which keyword is used to define a function in Python?|function|define|func|def|def
+What is the output of the following code? x = [1, 2, 3] print(len(x))|1|2|3|4|3
+Which loop is used to iterate over a sequence in Python?|repeat|for|loop|iterate|for
