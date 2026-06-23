@@ -35,6 +35,8 @@ localStorage.getItem("username");
 
 let score =
 parseInt(localStorage.getItem("quizScore"));
+let totalQuestions =
+parseInt(localStorage.getItem("totalQuestions"));
 
 let grade = "";
 
@@ -55,12 +57,12 @@ document.getElementById("studentName").innerHTML =
 "Student : " + username;
 
 document.getElementById("score").innerHTML =
-"Score : " + score + "/3";
+"Score : " + score + "/" + totalQuestions;
 
 document.getElementById("grade").innerHTML =
 "Grade : " + grade;
 
-if(score >= 2)
+if(score >= totalQuestions / 2)
 {
     document.getElementById("status").innerHTML =
     "Status : PASS ✅";

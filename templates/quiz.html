@@ -148,7 +148,10 @@ function submitQuiz()
     }
 
     {% endfor %}
-
+    localStorage.setItem(
+    "totalQuestions",
+    {{ questions|length }}
+);
     localStorage.setItem(
         "quizScore",
         score
